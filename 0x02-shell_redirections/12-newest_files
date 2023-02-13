@@ -1,2 +1,2 @@
 #!/bin/bash
-find /0x02-shell_directories -type f -printf "%t - %p\n" | sort -n | tail -l
+ls -t1 | head
