@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Use 'ip' command to get active IPv4 IPs and filter with awk
+ip -4 addr | awk '/inet / {split($2, a, "/"); print a[1]}'
