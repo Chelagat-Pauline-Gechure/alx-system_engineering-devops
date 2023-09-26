@@ -1,4 +1,4 @@
-# Script to install nginx using puppet
+# Install and configure an Nginx server using Puppet instead of Bash
 
 package {'nginx':
   ensure => 'present',
