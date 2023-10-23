@@ -13,7 +13,7 @@ if __name__ == '__main__':
     response = requests.get(userurl)
     employeeName = response.json().get('name')
 
-    todoUrl = url + "/todos"
+    todoUrl = userurl + "/todos"
     response = requests.get(todoUrl)
     tasks = response.json()
     done = 0
