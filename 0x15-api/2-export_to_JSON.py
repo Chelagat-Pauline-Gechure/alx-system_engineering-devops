@@ -9,17 +9,17 @@ import sys
 if __name__ == '__main__':
     emp_Id = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
-    url = baseUrl + "/" + emp_Id
+    userurl = baseUrl + "/" + emp_Id
 
-    response = requests.get(url)
+    response = requests.get(userurl)
     username = response.json().get('username')
 
-    todoUrl = url + "/todos"
+    todoUrl = userurl + "/todos"
     response = requests.get(todoUrl)
-    tasks = response.json()
+    taskslist = response.json()
 
     dictionary = {emp_Id: []}
-    for task in tasks:
+    for task in taskslist:
         dictionary[emp_Id].append({
             "task": task.get('title'),
             "completed": task.get('completed'),
