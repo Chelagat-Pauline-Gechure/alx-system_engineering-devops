@@ -25,5 +25,5 @@ if __name__ == "__main__":
                 taskList.append(taskDict)
         todoAll[user.get('id')] = taskList
 
-    with open('todo_all_employees.json', mode='w') as f:
-        json.dump(todoAll, f)
+    with open('todo_all_employees.json', mode='w') as filename:
+        json.dump(todoAll, filename)
