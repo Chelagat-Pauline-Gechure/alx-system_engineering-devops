@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 """Accessing a REST API for todo lists of employees"""
 
-import requests
+import csv
+import json
 import sys
+import urllib
+import urllib.request
+import requests
 
 
 if __name__ == '__main__':
-    employeeId = sys.argv[1]
+    emp_Id = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
-    url = baseUrl + "/" + employeeId
+    url = baseUrl + "/" + emp_Id
 
     response = requests.get(url)
     employeeName = response.json().get('name')
