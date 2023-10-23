@@ -2,7 +2,6 @@
 """REST AP to access employees todo lists"""
 
 import requests
-import json
 import sys
 
 
