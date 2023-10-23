@@ -5,7 +5,6 @@ import csv
 import json
 import sys
 import urllib
-import urllib.request
 import requests
 
 
