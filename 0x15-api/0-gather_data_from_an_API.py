@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""REST AP to access employees todo lists"""
+"""REST API to access employees todo lists"""
 
 import requests
 import sys
 
 
 if __name__ == '__main__':
-    employeeId = sys.argv[1]
+    emp_Id = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
-    url = baseUrl + "/" + employeeId
+    url = baseUrl + "/" + emp_Id
 
     response = requests.get(url)
     employeeName = response.json().get('name')
