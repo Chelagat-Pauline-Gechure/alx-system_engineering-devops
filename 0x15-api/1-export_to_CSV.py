@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Accessing a REST API for todo lists of employees"""
+"""REST API for accessing employees todo lists"""
 
 import requests
 import sys
@@ -8,12 +8,12 @@ import sys
 if __name__ == '__main__':
     emp_Id = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
-    url = baseUrl + "/" + emp_Id
+    userurl = baseUrl + "/" + emp_Id
 
-    response = requests.get(url)
+    response = requests.get(userurl)
     username = response.json().get('username')
 
-    todoUrl = url + "/todos"
+    todoUrl = userurl + "/todos"
     response = requests.get(todoUrl)
     tasks = response.json()
 
