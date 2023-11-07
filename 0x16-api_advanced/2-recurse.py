@@ -1,29 +1,41 @@
 #!/usr/bin/python3
 """
 recursive function that queries the Reddit API and returns
-a list containing the titles of all hot articles for a given subreddit
+a list containing the titles of all hot articles for a given keywords
 """
+
 import requests
-after = None
 
 
-def recurse(subreddit, hot_list=[]):
-    """returning top ten post titles recursively"""
-    global after
-    agent_user = {'User-Agent': 'JSON Project'}
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    parameters = {'after': after}
-    results = requests.get(url, params=parameters, headers=user_agent,
-                           allow_redirects=False)
-
-    if results.status_code == 200:
-        after_data = results.json().get("data").get("after")
-        if after_data is not None:
-            after = after_data
-            recurse(subreddit, hot_list)
-        all_titles = results.json().get("data").get("children")
-        for title_ in all_titles:
-            hot_list.append(title_.get("data").get("title"))
+def recurse(subreddit, hot_list=[], after=None, max_pages=None):
+    """
+    returning top ten post titles recursively
+    """
+    if max_pages is not None and max_pages <= 0:
         return hot_list
-    else:
-        return (None)
+
+    base_url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    params = {'after': after} if after else {}
+
+    request = requests.get(
+        base_url,
+        params=params,
+        headers={'User-Agent': 'Chelagat Pauline Gechure'},
+        allow_redirects=False
+    )
+
+    if request.status_code != 200:
+        return None  
+    data = request.json()
+    posts = data.get('data', {}).get('children', [])
+
+    for post in posts:
+        hot_list.append(post['data']['title'])
+
+    next_page = data.get('data', {}).get('after')
+    if next_page:
+        return recurse(
+            subreddit, hot_list, after=next_page, max_pages=max_pages
+        )
+
+    return hot_list if len(hot_list) > 0 else None
