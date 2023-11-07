@@ -25,7 +25,7 @@ def recurse(subreddit, hot_list=[], after=None, max_pages=None):
     )
 
     if request.status_code != 200:
-        return None  
+        return None
     data = request.json()
     posts = data.get('data', {}).get('children', [])
 
