@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-number of subscribers for a given subreddit
+subreddit subscriber numbers
 """
 
 from requests import get
@@ -8,8 +8,8 @@ from requests import get
 
 def number_of_subscribers(subreddit):
     """
-    function that queries the Reddit API and returns the number of subscribers
-    (not active users, total subscribers) for a given subreddit.
+    function that querrying Reddit API then  returning subscriber numbers
+    for a given subreddit.
     """
 
     if subreddit is None or not isinstance(subreddit, str):
